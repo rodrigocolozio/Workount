@@ -25,8 +25,7 @@ class CustomTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-//        setup()
-//        layout()
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

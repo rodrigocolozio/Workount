@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
     
     
     
-    var exercises: [Exercise] = [Exercise(exerciseName: "Posterior de coxas", repetitions: "4x15", execution: "Concentrado com progressão de carga Concentrado com progressão de cargaConcentrado com progressão de cargaConcentrado com progressão de cargaConcentrado com progressão de cargaConcentrado com progressão de cargaConcentrado com progressão de cargaConcentrado com progressão de cargaConcentrado com progressão de carga"), Exercise(exerciseName: "Elevação pélvica", repetitions: "6x10", execution: "Progressão de carga"), Exercise(exerciseName: "Elevação pélvica", repetitions: "6x10", execution: "Progressão de carga")]
+    var exercises: [Exercise] = [Exercise(exerciseName: "Some Example", repetitions: "4x15", execution: "Swipe left to delete your workout"), Exercise(exerciseName: "Bench Press", repetitions: "6x10", execution: "Rest-pause") ]
     
 
 
@@ -163,17 +163,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if selectedCell == indexPath {
-//            return
-//        }
-//        return 60
-//    }
-//
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedRow = tableView.cellForRow(at: indexPath) else { return }
+        let exercise = exercises[indexPath.row]
                     
         let infoVc = ExerciseInfoViewController()
+        infoVc.exerciseFromUser.text = exercise.exerciseName
+        infoVc.repsFromUser.text = exercise.repetitions
+        infoVc.executionFromUser.text = exercise.execution
         self.navigationController?.pushViewController(infoVc, animated: true)
         
         }
@@ -217,7 +215,6 @@ extension HomeViewController: AddExerciseDelegate {
         exercises.append(exercise)
         tableView.reloadData()
     }
-    
-    
 }
+
 

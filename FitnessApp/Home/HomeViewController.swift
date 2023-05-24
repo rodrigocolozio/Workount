@@ -205,7 +205,15 @@ extension HomeViewController {
     
     
     @objc func searchBarButton() {
-        print("searchButton")
+        let alert = UIAlertController(title: "Search", message: "You can search by an exercise or a workout routine", preferredStyle: .actionSheet)
+        let googleButton = UIAlertAction(title: "Search for a exercise", style: .default) { _ in
+                    let googleVC = GoogleWebViewController()
+            self.present(googleVC, animated: true)
+                    }
+        let okButton = UIAlertAction(title: "Ok", style: .cancel)
+        alert.addAction(googleButton)
+        alert.addAction(okButton)
+        self.present(alert, animated: true)
     }
 }
 

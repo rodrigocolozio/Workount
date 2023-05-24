@@ -21,6 +21,7 @@
 		0C4479512A1C1639002D0EF7 /* ExerciseInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4479502A1C1639002D0EF7 /* ExerciseInfoViewController.swift */; };
 		0C4479532A1C1B1E002D0EF7 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4479522A1C1B1E002D0EF7 /* ExerciseView.swift */; };
 		0C4479562A1C7974002D0EF7 /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4479552A1C7974002D0EF7 /* AddExerciseViewController.swift */; };
+		0C6797792A1E87D20017280A /* GoogleWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6797782A1E87D20017280A /* GoogleWebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		0C4479502A1C1639002D0EF7 /* ExerciseInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseInfoViewController.swift; sourceTree = "<group>"; };
 		0C4479522A1C1B1E002D0EF7 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		0C4479552A1C7974002D0EF7 /* AddExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewController.swift; sourceTree = "<group>"; };
+		0C6797782A1E87D20017280A /* GoogleWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleWebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				0C4479502A1C1639002D0EF7 /* ExerciseInfoViewController.swift */,
 				0C4479522A1C1B1E002D0EF7 /* ExerciseView.swift */,
 				0C44794D2A1BDA62002D0EF7 /* Cell */,
+				0C6797772A1E87980017280A /* WebView */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -145,6 +148,14 @@
 				0C4479552A1C7974002D0EF7 /* AddExerciseViewController.swift */,
 			);
 			path = Add;
+			sourceTree = "<group>";
+		};
+		0C6797772A1E87980017280A /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				0C6797782A1E87D20017280A /* GoogleWebViewController.swift */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C6797792A1E87D20017280A /* GoogleWebViewController.swift in Sources */,
 				0C44794F2A1BDA8A002D0EF7 /* CustomTableViewCell.swift in Sources */,
 				0C4479442A1A8119002D0EF7 /* HomeViewController.swift in Sources */,
 				0C4479512A1C1639002D0EF7 /* ExerciseInfoViewController.swift in Sources */,

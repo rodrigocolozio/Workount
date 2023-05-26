@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
 
@@ -39,6 +40,19 @@ class HomeViewController: UIViewController {
         style()
         layout()
         addBarButton()
+        logoutButton()
+        
+        
+        /* USER IS LOGGED IN:
+         
+         CREATE SOME LOGIC THAT SHOWS FIREBASE THAT THE USER IS ALREADY LOGGED ID
+         
+         if FirebaseAtu.Auth.auty().currentUser != nil {
+         configureLoginSuccess()
+         userIsLoggedIn()
+     }
+         */
+        
     }
     
     private func configureTableView() {
@@ -144,6 +158,10 @@ class HomeViewController: UIViewController {
     func addBarButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchBarButton))
     }
+    
+    func logoutButton() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "power"), landscapeImagePhone: nil, style: .done, target: self, action: #selector(logoutAction))
+    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -215,6 +233,26 @@ extension HomeViewController {
         alert.addAction(okButton)
         self.present(alert, animated: true)
     }
+    
+    @objc func logoutAction() {
+        print("User logged out from application")
+        //spinning bug! Fix it!
+        let refLogin = LoginViewController()
+        refLogin.loginButton.configuration?.showsActivityIndicator = false
+        // create logout
+        do {
+            try FirebaseAuth.Auth.auth().signOut()
+            self.navigationController?.popViewController(animated: true)
+
+        } catch {
+            print("Could not sign out")
+            let alert = UIAlertController(title: "Error", message: "Could not sign out, please reload your app", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            present(alert, animated: true)
+        }
+        
+    }
+    
 }
 
 // MARK: - AddDelegate

@@ -53,6 +53,7 @@ extension RegisterView {
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.placeholder = "Email"
         emailTextField.layer.cornerRadius = 8
+        emailTextField.autocapitalizationType = .none
         emailTextField.delegate = self
         
         usernameTextfield.translatesAutoresizingMaskIntoConstraints = false
@@ -63,6 +64,7 @@ extension RegisterView {
         passwordTextfield.translatesAutoresizingMaskIntoConstraints = false
         passwordTextfield.placeholder = "Password"
         passwordTextfield.layer.cornerRadius = 8
+        passwordTextfield.autocapitalizationType = .none
         passwordTextfield.delegate = self
         
         confirmPasswordTextfield.translatesAutoresizingMaskIntoConstraints = false

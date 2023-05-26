@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 class RegisterViewController: UIViewController {
     
     //MARK: - Attributes
@@ -108,15 +108,33 @@ extension RegisterViewController {
             assertionFailure("Theses textFields can not be nil")
             return
         }
-        if email.isEmpty || username.isEmpty || password.isEmpty || confirmPassword.isEmpty {
-            errorEmptyTextField(withMessage: "You should complete all the information above")
-        } else if username == "Rodrigo" {
-            errorUserAlreadyExists(withMessage: "Email / User already exists")
-        } else if password != confirmPassword{
-            errorPassword(withMessage: "Your password do not match")
-        }else {
-            registerIsApproved(title: "Welcome", message: "We're all set! Enjoy your journey with Workount.")
-        }
+//        if email.isEmpty || username.isEmpty || password.isEmpty || confirmPassword.isEmpty {
+//            errorEmptyTextField(withMessage: "You should complete all the information above")
+//        } else if username == "Rodrigo" {
+//            errorUserAlreadyExists(withMessage: "Email / User already exists")
+//        } else if password != confirmPassword{
+//            errorPassword(withMessage: "Your password do not match")
+//        }else {
+//            registerIsApproved(title: "Welcome", message: "We're all set! Enjoy your journey with Workount.")
+//        }
+        
+        // creatring account with Firebase
+        
+        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { [weak self] result, error in
+            guard let strongSelf = self else { return }
+            
+            guard error == nil else {
+                if email.isEmpty || username.isEmpty || password.isEmpty || confirmPassword.isEmpty {
+                    strongSelf.errorEmptyTextField(withMessage: "You should complete all the information above")
+                }
+                print("Account creation failed.")
+                return
+            }
+            
+            // proceed with registration
+            strongSelf.registerIsApproved(title: "Welcome", message: "We're all set! Enjoy your journey with Workount.")
+            
+        })
         
         
         

@@ -47,7 +47,8 @@ extension LoginView {
         stackView.spacing = 8
         // email
         usernameTextField.translatesAutoresizingMaskIntoConstraints = false
-        usernameTextField.placeholder = "Username"
+        usernameTextField.placeholder = "Email"
+        usernameTextField.autocapitalizationType = .none
         usernameTextField.layer.cornerRadius = 8
         usernameTextField.delegate = self
         

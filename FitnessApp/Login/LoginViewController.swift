@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
@@ -29,6 +30,7 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .systemBackground
         style()
         layout()
+        checkIfUsersIsSignedIn()
     }
 }
 
@@ -124,17 +126,35 @@ extension LoginViewController {
             assertionFailure("Those field could never be nil")
             return
         }
+//        
+//        if username.isEmpty || password.isEmpty {
+//            configureErroeMesage(withMessage: "Email / Password can not be empty")
+//        } else if username != "Rodrigo" && password != "Welcome"{
+//            configureErroeMesage(withMessage: "Email or password is wrong, please try again ...")
+//        } else {
+//            configureLoginSuccess()
+//            userIsLoggedIn()
+//        }
         
-        if username.isEmpty || password.isEmpty {
-            configureErroeMesage(withMessage: "Email / Password can not be empty")
-        } else if username != "Rodrigo" && password != "Welcome"{
-            configureErroeMesage(withMessage: "Email or password is wrong, please try again ...")
-        } else {
-            configureLoginSuccess()
-            userIsLoggedIn()
-        }
-            
-
+        // get auth instance
+        // attempt sign in
+        // if failure, present errorMessage
+        
+        FirebaseAuth.Auth.auth().signIn(withEmail: username, password: password, completion: { [weak self] result, error in
+            guard let strongSelf = self else { return }
+            guard error == nil else {
+                if username.isEmpty || password.isEmpty {
+                    strongSelf.configureErroeMesage(withMessage: "Email / Password can not be empty or user is already in use")
+                }
+                print("user failed when logging in")
+                return
+            }
+            //Success state
+            strongSelf.configureLoginSuccess()
+            strongSelf.userIsLoggedIn()
+            strongSelf.loginView.usernameTextField.resignFirstResponder()
+            strongSelf.loginView.passwordTextField.resignFirstResponder()
+        })
     }
     
     
@@ -161,15 +181,17 @@ extension LoginViewController {
     }
     
     @objc func createButtonTapped() {
-        print("Create button wat tapped")
+        print("Create button was tapped")
         let registerVC = RegisterViewController()
         self.navigationController?.pushViewController(registerVC, animated: true)
         
-        /*RegisterPage
-         Sould take us to the RegisterPageViewController (create ViewController)
-         
-         same layout of LoginViewController
-         */
+    }
+    
+    func checkIfUsersIsSignedIn() {
+        if FirebaseAuth.Auth.auth().currentUser != nil {
+            let homeVC = HomeViewController()
+            self.navigationController?.pushViewController(homeVC, animated: true)
+        }
     }
     
 }

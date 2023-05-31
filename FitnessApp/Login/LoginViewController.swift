@@ -160,17 +160,20 @@ extension LoginViewController {
     
     
     func configureLoginSuccess() {
-        loginButton.configuration?.showsActivityIndicator = true
+        loginButton.configuration?.showsActivityIndicator = false
     }
     
     func userIsLoggedIn() {
-        if loginButton.configuration?.showsActivityIndicator == true {
+        if loginButton.configuration?.showsActivityIndicator == false {
             // Set a delay of 1 second before presenting the other view controller
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 // Instantiate and present the other view controller
-                let homeVC = HomeViewController()
-                self.navigationController?.pushViewController(homeVC, animated: true)
-            }
+//                let homeVC = HomeViewController()
+//                self.navigationController?.pushViewController(homeVC, animated: true)
+                
+                let animationVC = AnimationLoginViewController()
+                self.navigationController?.pushViewController(animationVC, animated: true)
+//            }
         }
     }
     

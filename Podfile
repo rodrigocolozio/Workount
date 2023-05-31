@@ -7,7 +7,7 @@ target 'FitnessApp' do
 
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
-
+pod 'ANActivityIndicator'
   # Pods for FitnessApp
 
 end

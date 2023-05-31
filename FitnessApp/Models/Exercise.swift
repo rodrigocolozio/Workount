@@ -2,22 +2,23 @@
 //  Exercise.swift
 //  FitnessApp
 //
-//  Created by Rodrigo Colozio on 22/05/23.
+//  Created by Rodrigo Colozio on 30/05/23.
 //
 
 import Foundation
 
-public class Exercise {
+
+class Exercise {
     
-    var exerciseName: String
-    var repetitions: String
-    var execution: String
-    
+    let exerciseName: String
+    let repetitions: String
+    let execution: String
     
     init(exerciseName: String, repetitions: String, execution: String) {
         self.exerciseName = exerciseName
         self.repetitions = repetitions
         self.execution = execution
     }
+    
     
 }

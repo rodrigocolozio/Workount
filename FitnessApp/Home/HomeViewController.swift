@@ -243,7 +243,7 @@ extension HomeViewController {
         do {
             try FirebaseAuth.Auth.auth().signOut()
             self.navigationController?.popViewController(animated: true)
-
+            self.navigationController?.popViewController(animated: true)
         } catch {
             print("Could not sign out")
             let alert = UIAlertController(title: "Error", message: "Could not sign out, please reload your app", preferredStyle: .alert)

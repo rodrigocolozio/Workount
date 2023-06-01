@@ -18,6 +18,44 @@ class ExerciseInfoViewController: UIViewController {
     let execution = UILabel()
     let executionFromUser = UILabel()
     
+    // MARK: - Timer attributes
+    
+    var timer: Timer?
+    var startTime: Date?
+    
+    let timeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 40)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let startButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Start", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(startTimer), for: .touchUpInside)
+        return button
+    }()
+    
+    let stopButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Stop", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(stopTimer), for: .touchUpInside)
+        button.isEnabled = false
+        return button
+    }()
+    
+    let resetButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Reset", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(resetTimer), for: .touchUpInside)
+        button.isEnabled = false
+        return button
+    }()
+    
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +65,7 @@ class ExerciseInfoViewController: UIViewController {
 
         style()
         layout()
+        setupUI()
     }
 }
 
@@ -99,3 +138,71 @@ extension ExerciseInfoViewController {
         ])
     }
 }
+// Timer
+extension ExerciseInfoViewController {
+
+
+    
+    func setupUI() {
+        view.addSubview(timeLabel)
+        view.addSubview(startButton)
+        view.addSubview(stopButton)
+        view.addSubview(resetButton)
+        
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        startButton.translatesAutoresizingMaskIntoConstraints = false
+        stopButton.translatesAutoresizingMaskIntoConstraints = false
+        resetButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            timeLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            startButton.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 30),
+            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stopButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 10),
+            stopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            resetButton.topAnchor.constraint(equalTo: stopButton.bottomAnchor, constant: 10),
+            resetButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    @objc func startTimer() {
+        startTime = Date()
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
+        
+        startButton.isEnabled = false
+        stopButton.isEnabled = true
+        resetButton.isEnabled = false
+    }
+    
+    @objc func stopTimer() {
+        timer?.invalidate()
+        
+        startButton.isEnabled = true
+        stopButton.isEnabled = false
+        resetButton.isEnabled = true
+    }
+    
+    @objc func resetTimer() {
+        timer?.invalidate()
+        startTime = nil
+        timeLabel.text = "00:00:00.00"
+        
+        startButton.isEnabled = true
+        stopButton.isEnabled = false
+        resetButton.isEnabled = false
+    }
+    
+    @objc func updateTimeLabel() {
+        guard let startTime = startTime else { return }
+        
+        let currentTime = Date().timeIntervalSince(startTime)
+        let minutes = Int(currentTime / 60)
+        let seconds = Int(currentTime.truncatingRemainder(dividingBy: 60))
+        let milliseconds = Int((currentTime * 100).truncatingRemainder(dividingBy: 100))
+        
+        let timeText = String(format: "%02d:%02d:%02d.%02d", minutes, seconds, milliseconds)
+        timeLabel.text = timeText
+    }
+}
+

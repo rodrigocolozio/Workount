@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/rodrigocolozio/Documents/Developer/MyPersonalProjects/FitnessApp/FitnessApp/Exercise+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/rodrigocolozio/Documents/Developer/MyPersonalProjects/FitnessApp/FitnessApp/Exercise+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:FitnessApp.xcodeproj">
    </FileRef>
    <FileRef

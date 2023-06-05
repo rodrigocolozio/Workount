@@ -23,7 +23,9 @@ class HomeViewController: UIViewController {
     
     
     
-    var exercises: [Exercise] = [Exercise(exerciseName: "Some Example", repetitions: "4x15", execution: "Swipe left to delete your workout"), Exercise(exerciseName: "Bench Press", repetitions: "6x10", execution: "Rest-pause") ]
+//    var exercises: [Exercise] = [Exercise(exerciseName: "Some Example", repetitions: "4x15", execution: "Swipe left to delete your workout"), Exercise(exerciseName: "Bench Press", repetitions: "6x10", execution: "Rest-pause") ]
+    
+    var exercises = [Exercise]()
     
 
 
@@ -36,7 +38,7 @@ class HomeViewController: UIViewController {
         navigationItem.title = "Exercises"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        
+        exercises = CoreDataManager.shared.fetchExercise()
         style()
         layout()
         addBarButton()
@@ -164,6 +166,7 @@ class HomeViewController: UIViewController {
     }
 }
 
+    // MARK: - Table View Delegate and DataSource
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -197,11 +200,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Remove the item from your data source array
-            exercises.remove(at: indexPath.row)
-
-            // Delete the row from the table view
-            tableView.deleteRows(at: [indexPath], with: .bottom)
+            let exercise = exercises[indexPath.row]
+            if CoreDataManager.shared.deleteExercise(with: exercise) {
+                exercises.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+            
         }
 
     }

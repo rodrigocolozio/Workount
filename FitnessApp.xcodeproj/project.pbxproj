@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C40514C2A26A20F00C72CC7 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40514B2A26A20F00C72CC7 /* Exercise.swift */; };
 		0C4051902A2761A900C72CC7 /* AnimationLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40518F2A2761A900C72CC7 /* AnimationLoginViewController.swift */; };
+		0C40521C2A2E581500C72CC7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40521B2A2E581500C72CC7 /* CoreDataManager.swift */; };
+		0C40521F2A2E58E900C72CC7 /* FitnessApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C40521D2A2E58E900C72CC7 /* FitnessApp.xcdatamodeld */; };
+		0C4052222A2E596300C72CC7 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4052212A2E596300C72CC7 /* Exercise+CoreDataProperties.swift */; };
+		0C4052232A2E596300C72CC7 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4052202A2E596300C72CC7 /* Exercise+CoreDataClass.swift */; };
 		0C44792B2A195591002D0EF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C44792A2A195591002D0EF7 /* AppDelegate.swift */; };
 		0C44792D2A195591002D0EF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C44792C2A195591002D0EF7 /* SceneDelegate.swift */; };
 		0C44792F2A195591002D0EF7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C44792E2A195591002D0EF7 /* LoginViewController.swift */; };
@@ -28,8 +31,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C40514B2A26A20F00C72CC7 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		0C40518F2A2761A900C72CC7 /* AnimationLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationLoginViewController.swift; sourceTree = "<group>"; };
+		0C40521B2A2E581500C72CC7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		0C40521E2A2E58E900C72CC7 /* FitnessApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FitnessApp.xcdatamodel; sourceTree = "<group>"; };
+		0C4052202A2E596300C72CC7 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataClass.swift"; path = "/Users/rodrigocolozio/Documents/Developer/MyPersonalProjects/FitnessApp/FitnessApp/Exercise+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		0C4052212A2E596300C72CC7 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataProperties.swift"; path = "/Users/rodrigocolozio/Documents/Developer/MyPersonalProjects/FitnessApp/FitnessApp/Exercise+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		0C4479272A195591002D0EF7 /* FitnessApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C44792A2A195591002D0EF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C44792C2A195591002D0EF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +110,8 @@
 				0C4479332A195592002D0EF7 /* Assets.xcassets */,
 				0C4479352A195592002D0EF7 /* LaunchScreen.storyboard */,
 				0C4479382A195592002D0EF7 /* Info.plist */,
+				0C40521B2A2E581500C72CC7 /* CoreDataManager.swift */,
+				0C40521D2A2E58E900C72CC7 /* FitnessApp.xcdatamodeld */,
 			);
 			path = FitnessApp;
 			sourceTree = "<group>";
@@ -150,7 +158,8 @@
 		0C44794A2A1BD80F002D0EF7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0C40514B2A26A20F00C72CC7 /* Exercise.swift */,
+				0C4052202A2E596300C72CC7 /* Exercise+CoreDataClass.swift */,
+				0C4052212A2E596300C72CC7 /* Exercise+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -314,6 +323,7 @@
 				0C6797792A1E87D20017280A /* GoogleWebViewController.swift in Sources */,
 				0C44794F2A1BDA8A002D0EF7 /* CustomTableViewCell.swift in Sources */,
 				0C4479442A1A8119002D0EF7 /* HomeViewController.swift in Sources */,
+				0C40521C2A2E581500C72CC7 /* CoreDataManager.swift in Sources */,
 				0C4479512A1C1639002D0EF7 /* ExerciseInfoViewController.swift in Sources */,
 				0C44792F2A195591002D0EF7 /* LoginViewController.swift in Sources */,
 				0C44792B2A195591002D0EF7 /* AppDelegate.swift in Sources */,
@@ -321,9 +331,11 @@
 				0C4479492A1B256E002D0EF7 /* RegisterView.swift in Sources */,
 				0C4479532A1C1B1E002D0EF7 /* ExerciseView.swift in Sources */,
 				0C4051902A2761A900C72CC7 /* AnimationLoginViewController.swift in Sources */,
-				0C40514C2A26A20F00C72CC7 /* Exercise.swift in Sources */,
+				0C40521F2A2E58E900C72CC7 /* FitnessApp.xcdatamodeld in Sources */,
 				0C4479472A1B22BF002D0EF7 /* RegisterViewController.swift in Sources */,
+				0C4052222A2E596300C72CC7 /* Exercise+CoreDataProperties.swift in Sources */,
 				0C4479412A19576C002D0EF7 /* LoginView.swift in Sources */,
+				0C4052232A2E596300C72CC7 /* Exercise+CoreDataClass.swift in Sources */,
 				0C44792D2A195591002D0EF7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,6 +546,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0C40521D2A2E58E900C72CC7 /* FitnessApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0C40521E2A2E58E900C72CC7 /* FitnessApp.xcdatamodel */,
+			);
+			currentVersion = 0C40521E2A2E58E900C72CC7 /* FitnessApp.xcdatamodel */;
+			path = FitnessApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0C44791F2A195591002D0EF7 /* Project object */;
 }

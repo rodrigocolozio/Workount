@@ -186,7 +186,7 @@ extension ExerciseInfoViewController {
     @objc func resetTimer() {
         timer?.invalidate()
         startTime = nil
-        timeLabel.text = "00:00:00.00"
+        timeLabel.text = "00:00:00"
         
         startButton.isEnabled = true
         stopButton.isEnabled = false
@@ -201,7 +201,7 @@ extension ExerciseInfoViewController {
         let seconds = Int(currentTime.truncatingRemainder(dividingBy: 60))
         let milliseconds = Int((currentTime * 100).truncatingRemainder(dividingBy: 100))
         
-        let timeText = String(format: "%02d:%02d:%02d.%02d", minutes, seconds, milliseconds)
+        let timeText = String(format: "%02d:%02d:%02d", minutes, seconds, milliseconds)
         timeLabel.text = timeText
     }
 }

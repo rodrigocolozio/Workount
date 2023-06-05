@@ -84,8 +84,7 @@ extension AddExerciseViewController {
     
     func readingDataFromUser() -> Exercise? {
         guard let exercise = exerciseView.exerciseTextField.text, let rep = exerciseView.repetitionsTextField.text, let execution = exerciseView.executionTextView.text else { return nil }
-        let list = Exercise(exerciseName: exercise, repetitions: rep, execution: execution)
         
-        return list
+       return CoreDataManager.shared.createExercise(exercise: exercise, repetitions: rep, execution: execution)
     }
 }

@@ -21,7 +21,7 @@ class AnimationLoginViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Workount"
         label.font = .systemFont(ofSize: 50, weight: .bold)
-        label.textColor = .secondarySystemBackground
+        label.textColor = .black
         label.alpha = 0
         return label
     }()

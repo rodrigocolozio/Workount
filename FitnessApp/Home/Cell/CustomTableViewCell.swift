@@ -36,7 +36,7 @@ class CustomTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+//        self.accessoryType = .disclosureIndicator
         setup()
         layout()
     }
@@ -71,6 +71,7 @@ extension CustomTableViewCell {
     }
     
     func layout() {
+        contentView.layer.cornerRadius = 8
         contentView.addSubview(container)
         container.addSubview(exerciseTitle)
         container.addSubview(repetitionLabel)

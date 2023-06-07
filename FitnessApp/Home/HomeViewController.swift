@@ -241,23 +241,26 @@ extension HomeViewController {
     
     @objc func logoutAction() {
         print("User logged out from application")
-        //spinning bug! Fix it!
-        let refLogin = LoginViewController()
-        refLogin.loginButton.configuration?.showsActivityIndicator = false
-        // create logout
-        do {
-            try FirebaseAuth.Auth.auth().signOut()
-            self.navigationController?.popViewController(animated: true)
-            self.navigationController?.popViewController(animated: true)
-        } catch {
-            print("Could not sign out")
-            let alert = UIAlertController(title: "Error", message: "Could not sign out, please reload your app", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
-            present(alert, animated: true)
-        }
         
+        let logoutAlert = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: .alert)
+        logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        logoutAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+            let refLogin = LoginViewController()
+            // create logout
+            do {
+                try FirebaseAuth.Auth.auth().signOut()
+                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
+            } catch {
+                print("Could not sign out")
+                let alert = UIAlertController(title: "Error", message: "Could not sign out, please reload your app", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                self.present(alert, animated: true)
+            }
+        }))
+        present(logoutAlert, animated: true)
     }
-    
+
 }
 
 // MARK: - AddDelegate

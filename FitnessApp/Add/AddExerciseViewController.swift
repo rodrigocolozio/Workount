@@ -76,6 +76,9 @@ extension AddExerciseViewController {
             dismiss(animated: true)
         } else {
             // create error alert
+            let alert = UIAlertController(title: "Error", message: "You should fill out all of the spaces bellow", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+            present(alert, animated: true)
         }
     }
 }
@@ -83,7 +86,7 @@ extension AddExerciseViewController {
 extension AddExerciseViewController {
     
     func readingDataFromUser() -> Exercise? {
-        guard let exercise = exerciseView.exerciseTextField.text, let rep = exerciseView.repetitionsTextField.text, let execution = exerciseView.executionTextView.text else { return nil }
+        guard let exercise = exerciseView.exerciseTextField.text, let rep = exerciseView.repetitionsTextField.text, let execution = exerciseView.executionTextView.text, !exercise.isEmpty, !rep.isEmpty, !execution.isEmpty else { return nil }
         
        return CoreDataManager.shared.createExercise(exercise: exercise, repetitions: rep, execution: execution)
     }

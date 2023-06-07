@@ -57,6 +57,7 @@ extension ExerciseView {
         //ExerciseTextField
         exerciseTextField.translatesAutoresizingMaskIntoConstraints = false
         exerciseTextField.placeholder = "Exercise name ..."
+        exerciseTextField.textAlignment = .center
         exerciseTextField.layer.cornerRadius = 8
         exerciseTextField.backgroundColor = UIColor(red: 235, green: 235, blue: 235, alpha: 0.9)
         
@@ -69,6 +70,7 @@ extension ExerciseView {
         //RepetitionsTextField
         repetitionsTextField.translatesAutoresizingMaskIntoConstraints = false
         repetitionsTextField.placeholder = "e.g: 4x10"
+        repetitionsTextField.textAlignment = .center
         repetitionsTextField.layer.cornerRadius = 8
         repetitionsTextField.backgroundColor = UIColor(red: 235, green: 235, blue: 235, alpha: 0.9)
         
@@ -81,10 +83,13 @@ extension ExerciseView {
         //ExecutionTextView
         executionTextView.translatesAutoresizingMaskIntoConstraints = false
         executionTextView.isScrollEnabled = false
-        executionTextView.text = "Technique desired: "
+        executionTextView.textAlignment = .center
+        executionTextView.text = "Desired technique ... "
+        executionTextView.font = .systemFont(ofSize: 16)
+        executionTextView.textColor = UIColor.lightGray
         executionTextView.backgroundColor = UIColor(red: 235, green: 235, blue: 235, alpha: 0.9)
         executionTextView.layer.cornerRadius = 8
-        
+        executionTextView.delegate = self
         //Devider
         divider.translatesAutoresizingMaskIntoConstraints = false
         divider.backgroundColor = .lightGray
@@ -111,4 +116,23 @@ extension ExerciseView {
         divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
     }
+}
+
+extension ExerciseView: UITextViewDelegate {
+    
+    public func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textAlignment = .center
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Desired technique ... "
+            textView.textColor = UIColor.lightGray
+        }
+    }
+    
 }

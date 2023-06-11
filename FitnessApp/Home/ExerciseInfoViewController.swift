@@ -56,6 +56,49 @@ class ExerciseInfoViewController: UIViewController {
         return button
     }()
     
+    // reps attributes
+    var repsValue = 0
+    
+    fileprivate let repsCounterLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0"
+        label.font = .systemFont(ofSize: 40, weight: .semibold)
+        return label
+    }()
+    
+    fileprivate let setsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Sets"
+        label.font = .systemFont(ofSize: 25, weight: .semibold)
+        label.textColor = .lightGray
+        return label
+    }()
+    
+    fileprivate let subRepButton: UIButton = {
+       let b = UIButton()
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.setImage(UIImage(systemName: "minus"), for: .normal)
+        b.largeContentImageInsets = .init(top: 20, left: 20, bottom: 20, right: 20)
+        b.backgroundColor = .systemRed
+        b.layer.cornerRadius = 5
+        b.tintColor = .white
+        b.addTarget(self, action: #selector(subRepsToCounterLalbel), for: .touchUpInside)
+        return b
+    }()
+    
+    fileprivate let addRepButton: UIButton = {
+        let b = UIButton()
+         b.translatesAutoresizingMaskIntoConstraints = false
+         b.setImage(UIImage(systemName: "plus"), for: .normal)
+         b.largeContentImageInsets = .init(top: 20, left: 20, bottom: 20, right: 20)
+         b.backgroundColor = .systemGreen
+         b.layer.cornerRadius = 5
+         b.tintColor = .white
+         b.addTarget(self, action: #selector(addRepsToCounterLabel), for: .touchUpInside)
+         return b
+    }()
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,6 +191,11 @@ extension ExerciseInfoViewController {
         view.addSubview(startButton)
         view.addSubview(stopButton)
         view.addSubview(resetButton)
+        view.addSubview(repsCounterLabel)
+        view.addSubview(setsLabel)
+        view.addSubview(subRepButton)
+        view.addSubview(addRepButton)
+
         
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         startButton.translatesAutoresizingMaskIntoConstraints = false
@@ -162,7 +210,20 @@ extension ExerciseInfoViewController {
             stopButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 10),
             stopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             resetButton.topAnchor.constraint(equalTo: stopButton.bottomAnchor, constant: 10),
-            resetButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            resetButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            
+            repsCounterLabel.topAnchor.constraint(equalTo: self.resetButton.bottomAnchor, constant: 30),
+            repsCounterLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            setsLabel.topAnchor.constraint(equalTo: self.repsCounterLabel.bottomAnchor, constant: 10),
+            setsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            subRepButton.topAnchor.constraint(equalTo: self.setsLabel.bottomAnchor, constant: 5),
+            subRepButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 90),
+            
+            addRepButton.topAnchor.constraint(equalTo: self.setsLabel.bottomAnchor, constant: 5),
+            addRepButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -90),
         ])
     }
     
@@ -204,5 +265,34 @@ extension ExerciseInfoViewController {
         let timeText = String(format: "%02d:%02d:%02d", minutes, seconds, milliseconds)
         timeLabel.text = timeText
     }
+}
+
+    // MARK: - Configuring reps counter.
+extension ExerciseInfoViewController {
+    /* What to do?
+     
+     create a variable to save reps value
+     
+     
+     create one button to increase this variable
+     
+     
+     create another button to decrease this value
+     */
+    
+    @objc fileprivate func addRepsToCounterLabel() {
+        print("ADD WAS TAPPED")
+        repsValue += 1
+        self.repsCounterLabel.text = String(self.repsValue)
+    }
+    
+    @objc fileprivate func subRepsToCounterLalbel() {
+        print("MINUS WAS TAPPED")
+        if repsValue > 0 {
+            repsValue -= 1
+            self.repsCounterLabel.text = String(self.repsValue)
+        } 
+    }
+    
 }
 

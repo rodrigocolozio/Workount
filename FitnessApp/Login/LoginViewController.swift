@@ -31,6 +31,7 @@ class LoginViewController: UIViewController {
         style()
         layout()
         checkIfUsersIsSignedIn()
+        configureKeyboard()
     }
 }
 
@@ -165,15 +166,8 @@ extension LoginViewController {
     
     func userIsLoggedIn() {
         if loginButton.configuration?.showsActivityIndicator == false {
-            // Set a delay of 1 second before presenting the other view controller
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                // Instantiate and present the other view controller
-//                let homeVC = HomeViewController()
-//                self.navigationController?.pushViewController(homeVC, animated: true)
-                
                 let animationVC = AnimationLoginViewController()
                 self.navigationController?.pushViewController(animationVC, animated: true)
-//            }
         }
     }
     
@@ -197,5 +191,47 @@ extension LoginViewController {
         }
     }
     
+}
+
+    // MARK: - TextField ToolBar Dismiss Option
+extension LoginViewController {
+    func configureKeyboard() {
+        // set to username
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
+        let items: [UIBarButtonItem] = [
+            UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(nextTextFieldAction)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "Done", image: nil, target: self, action: #selector(dismissKeyboardTapped))
+        ]
+        
+        toolBar.items = items
+        toolBar.sizeToFit()
+        loginView.usernameTextField.inputAccessoryView = toolBar
+        
+        // set to password
+        let toolBarPassword = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
+        let itemsPassword: [UIBarButtonItem] = [
+            UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backTextFieldAction)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "Done", image: nil, target: self, action: #selector(dismissKeyboardTapped))
+        ]
+        
+        toolBarPassword.items = itemsPassword
+        toolBarPassword.sizeToFit()
+        loginView.passwordTextField.inputAccessoryView = toolBarPassword
+    }
+    
+    @objc func dismissKeyboardTapped() {
+        loginView.usernameTextField.resignFirstResponder()
+        loginView.passwordTextField.resignFirstResponder()
+    }
+    
+    @objc func nextTextFieldAction() {
+        self.loginView.passwordTextField.becomeFirstResponder()
+    }
+    
+    @objc func backTextFieldAction() {
+        self.loginView.usernameTextField.becomeFirstResponder()
+    }
 }
 

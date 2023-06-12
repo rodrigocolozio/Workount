@@ -108,17 +108,6 @@ extension RegisterViewController {
             assertionFailure("Theses textFields can not be nil")
             return
         }
-//        if email.isEmpty || username.isEmpty || password.isEmpty || confirmPassword.isEmpty {
-//            errorEmptyTextField(withMessage: "You should complete all the information above")
-//        } else if username == "Rodrigo" {
-//            errorUserAlreadyExists(withMessage: "Email / User already exists")
-//        } else if password != confirmPassword{
-//            errorPassword(withMessage: "Your password do not match")
-//        }else {
-//            registerIsApproved(title: "Welcome", message: "We're all set! Enjoy your journey with Workount.")
-//        }
-        
-        // creatring account with Firebase
         
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { [weak self] result, error in
             guard let strongSelf = self else { return }
@@ -173,4 +162,12 @@ extension RegisterViewController {
     }
     
 }
+    
+    // MARK: - TextField configure dismiss action
+//extension RegisterViewController {
+//    func configureKeyboard() {
+//        let toobarEmail = UIToolbar(frame: CGRect)
+//    }
+//    
+//}
 

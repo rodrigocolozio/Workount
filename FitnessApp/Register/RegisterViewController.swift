@@ -37,6 +37,7 @@ class RegisterViewController: UIViewController {
         
         style()
         layout()
+        configureDismissKeyboard()
     }
 }
 
@@ -164,10 +165,11 @@ extension RegisterViewController {
 }
     
     // MARK: - TextField configure dismiss action
-//extension RegisterViewController {
-//    func configureKeyboard() {
-//        let toobarEmail = UIToolbar(frame: CGRect)
-//    }
-//    
-//}
+extension RegisterViewController {
+    fileprivate func configureDismissKeyboard() {
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap);
+    }
+    
+}
 

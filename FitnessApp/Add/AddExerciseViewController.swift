@@ -29,6 +29,7 @@ class AddExerciseViewController: UIViewController {
         
         style()
         layout()
+        configureDismissKeyboard()
     }
 }
 
@@ -80,6 +81,11 @@ extension AddExerciseViewController {
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
             present(alert, animated: true)
         }
+    }
+    
+    fileprivate func configureDismissKeyboard() {
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap);
     }
 }
 
